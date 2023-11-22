@@ -12,7 +12,7 @@
 		<div class="card w-50 mx-auto my-5">
 			<div class="card-header text-center">User Login</div>
 			<div class="card-body">
-				<form method="post" action="testServlet">
+				<form method="post" action="LoginServlet">
 					<div class="form-group">
 						<label>Email</label> <input type="email" class="form-control"
 							name="login-email" required>
