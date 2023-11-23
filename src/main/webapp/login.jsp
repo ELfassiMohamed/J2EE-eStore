@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page import="com.store.app.model.*" %>
+<% User auth = (User) request.getSession().getAttribute("auth"); 
+	if(auth != null){
+		response.sendRedirect("home.jsp");	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +17,7 @@
 		<div class="card w-50 mx-auto my-5">
 			<div class="card-header text-center">User Login</div>
 			<div class="card-body">
-				<form method="post" action="LoginServlet">
+				<form method="post" action="user-login">
 					<div class="form-group">
 						<label>Email</label> <input type="email" class="form-control"
 							name="login-email" required>
