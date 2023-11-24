@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.store.app.model.Cart;
 import com.store.app.model.Product;
 
 public class ProductDao {
@@ -30,7 +31,7 @@ public class ProductDao {
 				product_row.setId(rs.getInt("id"));
 				product_row.setName(rs.getString("name"));
 				product_row.setCategory(rs.getString("category"));
-				product_row.setPrice(rs.getString("price"));
+				product_row.setPrice(rs.getDouble("price"));
 				product_row.setImage(rs.getString("image"));
 				products.add(product_row);
 			}
@@ -40,5 +41,56 @@ public class ProductDao {
 		}
 		return products;
 	}
+	
+	public List<Cart> getCartProduct(ArrayList<Cart> cartList){
+		List<Cart> productList = new ArrayList<Cart>();
+		try {
+			if(cartList.size() > 0) {
+				for(Cart item:cartList) {
+					query = "select * from products where id=?";
+					smt = this.con.prepareStatement(query);
+					smt.setInt(1, item.getId());
+					rs = smt.executeQuery();
+					while(rs.next()) {
+						Cart row = new Cart();
+							row.setId(rs.getInt("id"));
+							row.setName(rs.getString("name"));
+							row.setCategory(rs.getString("category"));
+							row.setPrice(rs.getDouble("price")*item.getQuantity());
+							row.setQuantity(item.getQuantity());
+							productList.add(row);
+						}
+					}
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		  return productList ;
+		}
+	
+	public double totalPrice(ArrayList<Cart> cartList) {
+		double total=0;
+		try {
+			if(cartList.size() > 0) {
+				for(Cart item:cartList) {
+					query = "select price from products where id=?";
+					smt = this.con.prepareStatement(query);
+					smt.setInt(1, item.getId());
+					rs = smt.executeQuery();
+					while(rs.next()) {
+						total+=rs.getDouble("price")*item.getQuantity();
+					}
+					
+				}
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return total;
+		
+	}
+		
+		
+	}
 
-}
