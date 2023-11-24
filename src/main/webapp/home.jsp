@@ -26,7 +26,7 @@
 <div class="row">
 			<% if(!products.isEmpty()){
 				for(Product p:products){ %>
-					<div class="col-md-3">
+					<div class="col-md-3 my-3">
 					<div class="card" style="width: 18rem;">
 					  <img src="product-images/image.jpg" class="card-img-top" alt="...">
 					  <div class="card-body">
@@ -34,7 +34,7 @@
 					    <h6 class="price"><%= p.getPrice() %></h6>
 					    <h6 class="category"><%= p.getCategory() %></h6>
 					    <div class="mt-3 d-flex justify-content-between">
-					    <a href="#" class="btn btn-primary">Add to Cart</a>
+					    <a href="CartServlet?id=<%= p.getId() %>" class="btn btn-dark">Add to Cart</a>
 					    <a href="#" class="btn btn-primary">Buy Now</a>
 					    </div>
 					  </div>
