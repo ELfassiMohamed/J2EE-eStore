@@ -1,9 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<%@ page import="com.store.app.model.*" %>
+	<%@ page import="com.store.app.dao.*" %>
+	<%@ page import="com.store.app.connection.*" %>
+	<%@ page import="java.util.*" %>
 <% User auth = (User) request.getSession().getAttribute("auth"); 
 	if(auth != null){
 		request.setAttribute("auth", auth);
+	}
+	ArrayList<Cart> cart_list = (ArrayList<Cart>) session.getAttribute("cart-session");
+	ProductDao cpd = new ProductDao(dbConnection.getConnection());
+	List<Cart> cartProduct = null;
+	if(cart_list != null){
+		cartProduct = cpd.getCartProduct(cart_list);
+		request.setAttribute("cart_list", cart_list);
+		
+		double TotaleP = cpd.totalPrice(cart_list);
+		request.setAttribute("TotaleP", TotaleP);
 	}
 %>
 <!DOCTYPE html>
@@ -26,7 +39,7 @@ font-size: 25px;
 <body>
 	<%@ include file="includes/navbar.jsp"%>
 	<div class="container my-3">
-		<div class="d-flex py-3"><h3>Total Price: 99 </h3> <a class="mx-3 btn btn-primary" href="cart-check-out">Check Out</a></div>
+		<div class="d-flex py-3"><h3>Total Price: $ ${TotaleP} </h3> <a class="mx-3 btn btn-primary" href="cart-check-out">Check Out</a></div>
 		<table class="table table-light">
 			<thead>
 				<tr>
@@ -38,26 +51,30 @@ font-size: 25px;
 				</tr>
 			</thead>
 			<tbody>
+				<% if(cart_list != null){
+					for(Cart cp:cartProduct){ %>
+						<tr>
+						<td><%= cp.getName() %></td>
+						<td><%= cp.getCategory() %></td>
+						<td><%= cp.getPrice() %> $</td>
+						<td>
+							<form action="order-now" method="post" class="form-inline">
+							<input type="hidden" name="id" value="<%=cp.getId() %>" class="form-input">
+								<div class="form-group d-flex justify-content-between">
+									<a class="btn bnt-sm btn-incre" href="Operations">
+									<i class="fas fa-plus-square"></i></a> 
+									<input type="text" name="quantity" class="form-control"  value="1" readonly> 
+									<a class="btn btn-sm btn-decre" href="Operations">
+									<i class="fas fa-minus-square"></i></a>
+								</div>
+								<button type="submit" class="btn btn-primary btn-sm">Buy</button>
+							</form>
+						</td>
+						<td><a href="remove-from-cart?id=" class="btn btn-sm btn-danger">Remove</a></td>
+					</tr>
+					<%}
+					} %>
 				
-				<tr>
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-					<td>
-						<form action="order-now" method="post" class="form-inline">
-						<input type="hidden" name="id" value="" class="form-input">
-							<div class="form-group d-flex justify-content-between">
-								<a class="btn bnt-sm btn-incre" href="quantity-inc-dec?action=inc&id=">
-								<i class="fas fa-plus-square"></i></a> 
-								<input type="text" name="quantity" class="form-control"  value="1" readonly> 
-								<a class="btn btn-sm btn-decre" href="quantity-inc-dec?action=dec&id=">
-								<i class="fas fa-minus-square"></i></a>
-							</div>
-							<button type="submit" class="btn btn-primary btn-sm">Buy</button>
-						</form>
-					</td>
-					<td><a href="remove-from-cart?id=" class="btn btn-sm btn-danger">Remove</a></td>
-				</tr>
 
 			</tbody>
 		</table>

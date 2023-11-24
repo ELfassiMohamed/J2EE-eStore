@@ -29,4 +29,14 @@
     <servlet-name>CartServlet</servlet-name>
     <url-pattern>/CartServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>QuantityOpsServlet</display-name>
+    <servlet-name>QuantityOpsServlet</servlet-name>
+    <servlet-class>com.store.app.servlet.QuantityOpsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QuantityOpsServlet</servlet-name>
+    <url-pattern>/Operations</url-pattern>
+  </servlet-mapping>
 </web-app>
