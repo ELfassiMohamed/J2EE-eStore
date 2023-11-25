@@ -61,16 +61,16 @@ font-size: 25px;
 							<form action="order-now" method="post" class="form-inline">
 							<input type="hidden" name="id" value="<%=cp.getId() %>" class="form-input">
 								<div class="form-group d-flex justify-content-between">
-									<a class="btn bnt-sm btn-incre" href="Operations">
+									<a class="btn bnt-sm btn-incre" href="Operations?action=inc&id=<%= cp.getId() %>">
 									<i class="fas fa-plus-square"></i></a> 
-									<input type="text" name="quantity" class="form-control"  value="1" readonly> 
-									<a class="btn btn-sm btn-decre" href="Operations">
+									<input type="text" name="quantity" class="form-control"  value="<%= cp.getQuantity() %>" readonly> 
+									<a class="btn btn-sm btn-decre" href="Operations?action=dec&id=<%= cp.getId() %>">
 									<i class="fas fa-minus-square"></i></a>
 								</div>
 								<button type="submit" class="btn btn-primary btn-sm">Buy</button>
 							</form>
 						</td>
-						<td><a href="remove-from-cart?id=" class="btn btn-sm btn-danger">Remove</a></td>
+						<td><a href="Operations?action=remove&id=<%= cp.getId() %>" class="btn btn-sm btn-danger">Remove</a></td>
 					</tr>
 					<%}
 					} %>
