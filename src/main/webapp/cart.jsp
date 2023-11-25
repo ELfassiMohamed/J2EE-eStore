@@ -58,7 +58,7 @@ font-size: 25px;
 						<td><%= cp.getCategory() %></td>
 						<td><%= cp.getPrice() %> $</td>
 						<td>
-							<form action="order-now" method="post" class="form-inline">
+							<form action="Operations" method="post" class="form-inline">
 							<input type="hidden" name="id" value="<%=cp.getId() %>" class="form-input">
 								<div class="form-group d-flex justify-content-between">
 									<a class="btn bnt-sm btn-incre" href="Operations?action=inc&id=<%= cp.getId() %>">

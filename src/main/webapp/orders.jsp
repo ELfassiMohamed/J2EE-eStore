@@ -11,11 +11,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <%@ include file="includes/header.jsp"%>
-<title>eStrore Orders</title>
+<title>Store Orders</title>
 </head>
 <body>
 	<%@ include file="includes/navbar.jsp"%>
-	
+	<h1>Your Orders is ready</h1>
 	<%@ include file="includes/footer.jsp"%>
 </body>
 </html>

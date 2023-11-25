@@ -17,9 +17,6 @@ import com.store.app.model.Cart;
 public class QuantityOpsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try(PrintWriter out = response.getWriter();){
 			String action = request.getParameter("action");
@@ -59,6 +56,20 @@ public class QuantityOpsServlet extends HttpServlet {
 				}
 			
 			}else {response.sendRedirect("cart.jsp");}
+			
+		}
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try(PrintWriter out = response.getWriter();){
+			
+			if(request.getSession().getAttribute("auth") != null) {
+	
+				response.sendRedirect("orders.jsp");
+			}else {
+				response.sendRedirect("login.jsp");
+			}
 			
 		}
 	}
