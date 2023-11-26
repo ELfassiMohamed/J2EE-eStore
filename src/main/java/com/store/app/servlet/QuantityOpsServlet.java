@@ -7,9 +7,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.store.app.connection.dbConnection;
+import com.store.app.dao.OrderDao;
 import com.store.app.model.Cart;
+import com.store.app.model.Order;
+import com.store.app.model.User;
 
 /**
  * Servlet implementation class QuantityOpsServlet
@@ -24,6 +29,9 @@ public class QuantityOpsServlet extends HttpServlet {
 			ArrayList<Cart> cart_list = (ArrayList<Cart>)request.getSession().getAttribute("cart-session");
 			
 			if(action != null && id >= 1) {
+				if(action.equals("post")) {
+					doPost(request,response);
+				}
 				if(action.equals("inc")) {
 					for(Cart c:cart_list) {
 						if(c.getId() == id) {
@@ -63,14 +71,32 @@ public class QuantityOpsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try(PrintWriter out = response.getWriter();){
-			
-			if(request.getSession().getAttribute("auth") != null) {
-	
-				response.sendRedirect("orders.jsp");
+			User auth = (User) request.getSession().getAttribute("auth");
+			if(auth != null) {
+				
+				String productId = request.getParameter("id");
+				int productQ = Integer.parseInt(request.getParameter("quantity"));
+					if(productQ <= 0) {
+						productQ = 1;
+					}
+					Order order = new Order();
+					order.setId(Integer.parseInt(productId));
+					order.setUser_id(auth.getId());
+					order.setQuantity(productQ);
+					OrderDao orderDao = new OrderDao(dbConnection.getConnection());
+					boolean result = orderDao.submitOrder(order);
+						if(result) {
+							response.sendRedirect("orders.jsp");
+						}else {
+							out.print("zeyar karek");
+						}
 			}else {
 				response.sendRedirect("login.jsp");
 			}
 			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

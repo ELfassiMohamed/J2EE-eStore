@@ -1,36 +1,37 @@
 package com.store.app.model;
 
 public class Order extends Product {
-	private int id;
-	private String user_id;
+	private int order_id;
+	private int user_id;
 	private int quantity;
 	private String date;
 	public Order() {
 		super();
 	}
-	public Order(int id, String user_id, int quantity, String date) {
+	public Order(int order_id, int user_id, int quantity, String date) {
 		super();
-		this.id = id;
+		this.order_id = order_id;
 		this.user_id = user_id;
 		this.quantity = quantity;
 		this.date = date;
 	}
-	public Order(String user_id, int quantity, String date) {
+	public Order(int user_id, int quantity, String date) {
 		super();
 		this.user_id = user_id;
 		this.quantity = quantity;
 		this.date = date;
 	}
-	public int getId() {
-		return id;
+	
+	public int getOrder_id() {
+		return order_id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
 	}
-	public String getUser_id() {
+	public int getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(String user_id) {
+	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
 	public int getQuantity() {
@@ -47,7 +48,7 @@ public class Order extends Product {
 	}
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", user_id=" + user_id + ", quantity=" + quantity + ", date=" + date + "]";
+		return "Order [order_id=" + order_id + ", user_id=" + user_id + ", quantity=" + quantity + ", date=" + date + "]";
 	}
 	
 	
