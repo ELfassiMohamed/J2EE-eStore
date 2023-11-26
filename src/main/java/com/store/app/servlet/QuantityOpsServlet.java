@@ -32,6 +32,7 @@ public class QuantityOpsServlet extends HttpServlet {
 				if(action.equals("post")) {
 					doPost(request,response);
 				}
+				//inc
 				if(action.equals("inc")) {
 					for(Cart c:cart_list) {
 						if(c.getId() == id) {
@@ -42,6 +43,7 @@ public class QuantityOpsServlet extends HttpServlet {
 						}
 					}
 				}
+				//dec
 				if(action.equals("dec")) {
 					for(Cart c:cart_list) {
 						if(c.getId() == id ) {
@@ -53,6 +55,7 @@ public class QuantityOpsServlet extends HttpServlet {
 					}
 					response.sendRedirect("cart.jsp");
 				}
+				//delete
 				if(action.equals("remove")) {
 					for(Cart c:cart_list) {
 						if(c.getId() == id ) {
@@ -65,7 +68,7 @@ public class QuantityOpsServlet extends HttpServlet {
 			
 			}else {response.sendRedirect("cart.jsp");}
 			
-		}
+		}  
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

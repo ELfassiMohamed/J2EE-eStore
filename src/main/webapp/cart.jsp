@@ -39,7 +39,7 @@ font-size: 25px;
 <body>
 	<%@ include file="includes/navbar.jsp"%>
 	<div class="container my-3">
-		<div class="d-flex py-3"><h3>Total Price: $ ${TotaleP} </h3> <a class="mx-3 btn btn-primary" href="cart-check-out">Check Out</a></div>
+		<div class="d-flex py-3"><h3>Total Price: $ ${TotaleP} </h3> <a class="mx-3 btn btn-primary" href="Operations?action=check_out">Check Out</a></div>
 		<table class="table table-light">
 			<thead>
 				<tr>
