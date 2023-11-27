@@ -39,4 +39,14 @@
     <servlet-name>QuantityOpsServlet</servlet-name>
     <url-pattern>/Operations</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>OrderServlet</display-name>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>com.store.app.servlet.OrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/orderops</url-pattern>
+  </servlet-mapping>
 </web-app>

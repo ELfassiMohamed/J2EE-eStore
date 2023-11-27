@@ -26,7 +26,7 @@ public class QuantityOpsServlet extends HttpServlet {
 		try(PrintWriter out = response.getWriter();){
 			String action = request.getParameter("action");
 			int id = Integer.parseInt(request.getParameter("id"));
-			ArrayList<Cart> cart_list = (ArrayList<Cart>)request.getSession().getAttribute("cart-session");
+			ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-session");
 			
 			if(action != null && id >= 1) {
 				if(action.equals("post")) {
