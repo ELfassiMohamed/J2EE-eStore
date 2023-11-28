@@ -38,6 +38,8 @@ public class OrderServlet extends HttpServlet {
 		try(PrintWriter out = response.getWriter()){
 			ArrayList<Cart> cart_list = (ArrayList<Cart>)request.getSession().getAttribute("cart-session");
 			User auth = (User) request.getSession().getAttribute("auth");
+			String action = request.getParameter("action");
+
 			if(cart_list != null && auth != null) {
 				for(Cart c:cart_list) {
 					Order order = new Order();

@@ -43,7 +43,7 @@ public class OrderDao {
 	 public List<Order> userOrders(int id) {
 	        List<Order> list = new ArrayList<>();
 	        try {
-	            query = "select * from orders where user_id=? order by orders.order_id desc";
+	            query = "select * from orders where user_id=? ";
 	            smt = this.con.prepareStatement(query);
 	            smt.setInt(1, id);
 	            rs = smt.executeQuery();
@@ -52,7 +52,7 @@ public class OrderDao {
 	                ProductDao productDao = new ProductDao(this.con);
 	                int pId = rs.getInt("product_id");
 	                Product product = productDao.getSingleProduct(pId);
-	                order.setOrder_id(rs.getInt("order_id"));
+	                order.setOrder_id(rs.getInt("id"));
 	                order.setId(pId);
 	                order.setName(product.getName());
 	                order.setCategory(product.getCategory());
