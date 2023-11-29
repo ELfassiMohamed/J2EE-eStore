@@ -13,16 +13,10 @@ import java.util.ArrayList;
 
 import com.store.app.model.Cart;
 
-/**
- * Servlet implementation class CartServlet
- */
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
-    public CartServlet() {
-        super();
-       
-    }
+    public CartServlet() { super(); }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

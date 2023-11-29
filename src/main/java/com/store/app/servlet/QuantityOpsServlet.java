@@ -16,9 +16,6 @@ import com.store.app.model.Cart;
 import com.store.app.model.Order;
 import com.store.app.model.User;
 
-/**
- * Servlet implementation class QuantityOpsServlet
- */
 public class QuantityOpsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
