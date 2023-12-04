@@ -49,4 +49,14 @@
     <servlet-name>OrderServlet</servlet-name>
     <url-pattern>/orderops</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Auth</display-name>
+    <servlet-name>Auth</servlet-name>
+    <servlet-class>com.store.app.servlet.Auth</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Auth</servlet-name>
+    <url-pattern>/Auth</url-pattern>
+  </servlet-mapping>
 </web-app>
