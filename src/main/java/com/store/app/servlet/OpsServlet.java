@@ -16,7 +16,7 @@ import com.store.app.model.Cart;
 import com.store.app.model.Order;
 import com.store.app.model.User;
 
-public class QuantityOpsServlet extends HttpServlet {
+public class OpsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
