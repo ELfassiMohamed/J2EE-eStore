@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+@WebServlet("/")
 public class Auth extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -16,8 +18,24 @@ public class Auth extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String path = request.getServletPath();
+		switch(path) {
+		case "logout":
+		{
+			if(request.getSession().getAttribute("auth") != null) {
+				request.getSession().removeAttribute("auth");
+				response.sendRedirect("home.jsp");
+			}else {
+				response.sendRedirect("login.jsp");
+			}
+			break;
+		}
+		case "/login":
+			doPost(request,response);
+			break;
+		default:
+			response.sendRedirect("login.jsp");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
